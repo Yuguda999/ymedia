@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>YMedia Gallery</h1>
+
+{% for media in multimedia %}
+<div class="item">
+    <h2>{{ media.title }}</h2>
+    <video controls>
+        <source src="{{ media.file.url }}" type="{{ media.file.content_type }}">
+        <p>{{ media.description }}</p>
+        <p>{{ media.created_at }}</p>
+    </video>
+</div>
+{% endfor %}
+<a href="{% url 'add_multimedia' %}">New Multimedia</a>
+{% endblock %}
