@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Photos</h5>
+        </div>
+        <div class="card-body">
+          {% if photos %}
+          <ul class="list-group">
+            {% for photo in photos %}
+            <li class="list-group-item">
+                          <img src="{{ photo.image.url }}" class="img-fluid" alt="{{ photo.caption }}">
+              <a href="{% url 'edit_photo' pk=photo.pk %}">edit</a>
+              <a href="{% url 'delete_photo' pk=photo.pk %}" class="float-right text-danger">delete</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No photos found.</p>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'upload_photo' %}" class="btn btn-primary btn-block">Upload Photo</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Music</h5>
+        </div>
+        <div class="card-body">
+          {% if music %}
+          <ul class="list-group">
+            {% for song in music %}
+            <li class="list-group-item">
+              <a href="{% url 'play_music' pk=song.pk %}">{{ song.album }}</a>
+              <a href="{% url 'edit_music' pk=song.pk %}" class="float-right">edit</a>
+              <a href="{% url 'delete_music' pk=song.pk %}" class="float-right mr-2 text-danger">delete</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No music found.</p>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'upload_music' %}" class="btn btn-primary btn-block">Upload Music</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Videos</h5>
+        </div>
+        <div class="card-body">
+          {% if videos %}
+          <ul class="list-group">
+            {% for video in videos %}
+            <li class="list-group-item">
+              <a href="{% url 'play_video' pk=video.pk %}">{{ video.title }}</a>
+              <a href="{% url 'edit_video' pk=video.pk %}" class="float-right"><i class="fas fa-edit"></i></a>
+              <a href="{% url 'delete_video' pk=video.pk %}" class="float-right mr-2 text-danger"><i class="fas fa-trash-alt"></i></a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No videos found.</p>
+          {% endif %}
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'upload_video' %}" class="btn btn-primary btn-block">Upload Video</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

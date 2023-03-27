@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mb-4">{{ music.title }}</h1>
+  <audio controls>
+    <source src="{{ music.song.url }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <p class="mt-4">{{ music.description }}</p>
+  <p><a href="{% url 'edit_music' pk=music.pk %}" class="btn btn-primary">Edit Music</a></p>
+</div>
+{% endblock %}
